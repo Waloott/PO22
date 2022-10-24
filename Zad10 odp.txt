@@ -1,0 +1,7 @@
+Sworzyć listę ze wszystkimi zwierzętami aktualizowaną po każdym stworzeniu nowego zwierzęta i wywołaniu metody move.
+
+Przy wywołaniu metody move sprawdzić czy żadne zwierze nie znajduje się na docelowej pozycji
+Jeśli się znajduje to wywołanie move nie ma żadnego skutku, tak jak w przypadku wyjścia poza mapę.
+
+Przy tworzeniu zwierzęta sprawdzić w konstruktorze czy żadne zwierzę nie znajduje się na starowej poztycji.
+Jeśli się znajduje to uniemożliwić stworzenie nowego obiektu.

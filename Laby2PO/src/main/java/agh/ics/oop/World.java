@@ -32,15 +32,8 @@ public class World {
 
     public static void main(String[] args) {
         Animal a = new Animal();
-        a.move(MoveDirection.RIGHT);
-        a.move(MoveDirection.FORWARD);
-        a.move(MoveDirection.FORWARD);
-        a.move(MoveDirection.FORWARD);
-        System.out.println(a);
         OptionsParser o  = new OptionsParser();
         MoveDirection[] moves = o.parse(new String[]{"f","x","forward","l","eooo","backward"});
-        System.out.println(Arrays.toString(moves));
-
         for (MoveDirection move : moves){
             a.move(move);
         }
@@ -73,12 +66,8 @@ class Animal {
             case WEST -> this.position = new Vector2d(this.position.x+1,this.position.y);
         }}
     private Integer offMap(Integer c){
-        if(c>4){
-            c=4;
-        }
-        if(c<0){
-            c=0;
-        }
+        if(c>4) return 4;
+        if(c<0) return 0;
         return c;
     }
     public void move(MoveDirection direction){
