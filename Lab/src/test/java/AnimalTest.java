@@ -16,7 +16,9 @@ public class AnimalTest {
 
     @Test
     public void testAnimalMovement(){
-        Animal a = new Animal();
+        IWorldMap map = new RectangularMap(4,4);
+
+        Animal a = new Animal(map);
 
         assertEquals("Północ, (2,2)",a.toString());
 
