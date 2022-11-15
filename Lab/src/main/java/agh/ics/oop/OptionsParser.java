@@ -3,9 +3,9 @@ package agh.ics.oop;
 import java.util.Arrays;
 import java.util.Map;
 
-class OptionsParser {
+public class OptionsParser {
+    MoveDirection[] newDirections = new MoveDirection[0];
     public MoveDirection[] parse(String[] directions) {
-        MoveDirection[] newDirections = new MoveDirection[0];
         for (int i = 0; i < directions.length; i++) {
             MoveDirection direction = switch (directions[i]) {
                 case "forward","f" ->  MoveDirection.FORWARD;

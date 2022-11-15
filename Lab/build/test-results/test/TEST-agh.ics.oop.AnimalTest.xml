@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="agh.ics.oop.AnimalTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-11-14T20:14:46" hostname="DESKTOP-JFOSEJ0" time="0.05">
+<testsuite name="agh.ics.oop.AnimalTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-11-15T22:43:50" hostname="DESKTOP-JFOSEJ0" time="0.025">
   <properties/>
-  <testcase name="testOptionsParser()" classname="agh.ics.oop.AnimalTest" time="0.033"/>
-  <testcase name="testAnimalMovement()" classname="agh.ics.oop.AnimalTest" time="0.016"/>
+  <testcase name="AnimalMapMovement()" classname="agh.ics.oop.AnimalTest" time="0.025"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

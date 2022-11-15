@@ -1,6 +1,4 @@
 package agh.ics.oop;
-import java.util.Arrays;
-import java.util.Objects;
 
 public class World {
     public static void run(MoveDirection[] directions) {
@@ -31,8 +29,18 @@ public class World {
     }
 
     public static void main(String[] args) {
-        RectangularMap map = new RectangularMap(4,4);
-        Animal a = new Animal(map);
+        String[] args2 = new String[]{"f","b","r","l","f","f","r","r","f","f","f","f","f","f","f","f"};
+        MoveDirection[] directions = new OptionsParser().parse(args2);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        System.out.println(map);
+        engine.run();
+        System.out.println(map);
+
+        Animal a = new Animal(map, new Vector2d(3,3));
+        map.place(a);
+        System.out.println(map);
     }
 }
 
