@@ -36,9 +36,22 @@ public class AnimalTest {
             }
         IWorldMap map2 = new RectangularMap(4,5);
         Animal a3 = new Animal(map2,new Vector2d(1,2));
+        Animal a4 = new Animal(map2,new Vector2d(1,2));
         map2.place(a3);
         Assertions.assertEquals(map2.objectAt(new Vector2d(1,2)),a3);
-        
+        a3.move(MoveDirection.FORWARD);
+        map2.place(a4);
+        Assertions.assertEquals(map2.objectAt(new Vector2d(1,2)),a4);
+        a4.move(MoveDirection.FORWARD);
+        Assertions.assertEquals(map2.objectAt(new Vector2d(1,2)),a4);
+        a3.move(MoveDirection.FORWARD);
+        a3.move(MoveDirection.FORWARD);
+        a3.move(MoveDirection.FORWARD);
+        Assertions.assertEquals(map2.objectAt(new Vector2d(1,5)),a3);
+        a4.move(MoveDirection.FORWARD);
+        a4.move(MoveDirection.FORWARD);
+        a4.move(MoveDirection.FORWARD);
+        Assertions.assertEquals(map2.objectAt(new Vector2d(1,4)),a4);
     }
 
 }
