@@ -4,6 +4,7 @@ public class Animal {
     public Vector2d position;
     private MapDirection direction;
     private final  IWorldMap map;
+    //this() konstruktor w konstruktorze z mniejszego wiekszy
     public Animal(IWorldMap map){
         this.map = map;
         position = new Vector2d(2,2);
@@ -13,9 +14,7 @@ public class Animal {
         this.map= map;
         position = initialPosition;
         direction = MapDirection.NORTH;
-
     }
-
     public String toString() {
         return switch(direction){
              case NORTH ->"^";

@@ -1,8 +1,10 @@
 package agh.ics.oop;
+import javax.crypto.spec.ChaCha20ParameterSpec;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.NavigableMap;
 
-public class RectangularMap implements IWorldMap {
+public class RectangularMap extends AbstractWorldMap {
     public int width;
     public int height;
     public final Vector2d UPPER_BOUND;
@@ -17,6 +19,13 @@ public class RectangularMap implements IWorldMap {
         LOWER_BOUND = new Vector2d(0,0);
    }
 
+   /*
+   @Override
+   public ArrayList<Animal> getAnimals(){
+        // return ArrayList.copyOf(animals); niewydajne
+       // lepiej return Collections.unmodifiableList(animals) pamietac
+   }
+*/
     public boolean canMoveTo(Vector2d position) {
         //return position.follows(new Vector2d(0,0)) && position.precedes(new Vector2d(4,4)) && !isOccupied(position);
         return position.follows(LOWER_BOUND) && position.precedes(UPPER_BOUND) && !isOccupied(position);
@@ -29,6 +38,9 @@ public class RectangularMap implements IWorldMap {
         return false;
     }
     public boolean isOccupied(Vector2d position) {
+        //return objectAt(positiom) != null
+        //optional powinien byc zamiast nulla
+        //z kazdej kolekcji mozna zrobic streama
         for (Animal animal : animals) {
             if (animal.position.equals(position)) {
                 return true;
@@ -47,5 +59,10 @@ public class RectangularMap implements IWorldMap {
     }
     public String toString(){
         return new MapVisualizer(this).draw(new Vector2d(0,0),new Vector2d(width,height));
+    }
+
+    @Override
+    public Vector2d getBounds() {
+        return null;
     }
 }
