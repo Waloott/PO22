@@ -15,7 +15,7 @@ public class GrassField extends AbstractWorldMap
     }
     public GrassField(int number){
 
-        grasses /* :) */ = new ArrayList<>();
+        grasses = new ArrayList<>();
         fieldsAmount = number;
         this.width = (int) Math.sqrt(number*10);
         this.height = (int) Math.sqrt(number*10);
