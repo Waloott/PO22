@@ -29,18 +29,15 @@ public class World {
     }
 
     public static void main(String[] args) {
-        String[] args2 = new String[]{"f","b","r","l","f","f","r","r","f","f","f","f","f","f","f","f"};
+        String[] args2 = new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"};
         MoveDirection[] directions = new OptionsParser().parse(args2);
-        IWorldMap map = new RectangularMap(10, 5);
+        IWorldMap map = new GrassField(10);
         Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
         IEngine engine = new SimulationEngine(directions, map, positions);
-        System.out.println(map);
         engine.run();
         System.out.println(map);
-
-        Animal a = new Animal(map, new Vector2d(3,3));
-        map.place(a);
-        System.out.println(map);
+        System.out.println(map.objectAt(new Vector2d(3,7)));
+        System.out.println(map.objectAt(new Vector2d(2,-1)));
     }
 }
 

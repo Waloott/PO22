@@ -1,7 +1,7 @@
 package agh.ics.oop;
 
 public class Animal {
-    public Vector2d position;
+    private Vector2d position;
     private MapDirection direction;
     private final  IWorldMap map;
     //this() konstruktor w konstruktorze z mniejszego wiekszy
@@ -9,6 +9,9 @@ public class Animal {
         this.map = map;
         position = new Vector2d(2,2);
         direction = MapDirection.NORTH;
+    }
+    public Vector2d getPosition(){
+        return this.position;
     }
     public Animal(IWorldMap map, Vector2d initialPosition){
         this.map= map;
@@ -18,9 +21,9 @@ public class Animal {
     public String toString() {
         return switch(direction){
              case NORTH ->"^";
-             case WEST-> ">";
-             case EAST -> "v";
-             case SOUTH -> "<";
+             case WEST-> "<";
+             case EAST -> ">";
+             case SOUTH -> "v";
      };
     }
 

@@ -24,11 +24,12 @@ public class SimulationEngine implements IEngine {
             Animal a = (Animal) map.objectAt(vectors[i]);
             a.move(move);
             //System.out.println(map);
-            vectors[i] = a.position;
+            vectors[i] = a.getPosition();
             i+=1;
             if(i==vectors.length){
                 i = 0;
             }
+
         }
 }
 }
