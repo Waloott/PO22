@@ -3,19 +3,15 @@ package agh.ics.oop;
 import java.util.Arrays;
 import java.util.Map;
 
-class OptionsParser {
+public class OptionsParser {
+    MoveDirection[] newDirections = new MoveDirection[0];
     public MoveDirection[] parse(String[] directions) {
-        MoveDirection[] newDirections = new MoveDirection[0];
         for (int i = 0; i < directions.length; i++) {
             MoveDirection direction = switch (directions[i]) {
-                case "f" ->  MoveDirection.FORWARD;
-                case "forward" ->  MoveDirection.FORWARD;
-                case "b" ->  MoveDirection.BACKWARD;
-                case "backward" ->  MoveDirection.BACKWARD;
-                case "l" ->   MoveDirection.LEFT;
-                case "left" -> MoveDirection.LEFT;
-                case "r" ->  MoveDirection.RIGHT;
-                case "right" -> MoveDirection.RIGHT;
+                case "forward","f" ->  MoveDirection.FORWARD;
+                case "backward","b" ->  MoveDirection.BACKWARD;
+                case "left","l" -> MoveDirection.LEFT;
+                case "right","r" -> MoveDirection.RIGHT;
                 default -> MoveDirection.UNKNOWN;
             };
             if(direction != MoveDirection.UNKNOWN){

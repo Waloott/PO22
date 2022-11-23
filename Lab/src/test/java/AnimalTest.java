@@ -1,38 +1,57 @@
 package agh.ics.oop;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import javax.naming.NamingEnumeration;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AnimalTest {
 
     @Test
-    public void testOptionsParser(){
-        OptionsParser o = new OptionsParser();
-        MoveDirection[] directions = o.parse(new String[]{"a","r","f","f","x","left","u","backward"});
-        assertArrayEquals(new MoveDirection[] {MoveDirection.RIGHT,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.LEFT,MoveDirection.BACKWARD}, directions);
+    public void AnimalMapMovement() {
+        String[] args = new String[]{"f","b","r","l","f","f","r","r","f","f","f","f","f","f","f","f"};
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
 
-        MoveDirection[] directions2 = o.parse(new String[]{"left","right","backward","forward","x","x","l","l","b","o","f","r"});
-        assertArrayEquals(new MoveDirection[] {MoveDirection.LEFT,MoveDirection.RIGHT,MoveDirection.BACKWARD,MoveDirection.FORWARD,MoveDirection.LEFT,MoveDirection.LEFT,MoveDirection.BACKWARD,MoveDirection.FORWARD,MoveDirection.RIGHT},directions2);
+        Animal a = new Animal(map,new Vector2d(2,0));
+        a.move(MoveDirection.LEFT);
+        a.move(MoveDirection.LEFT);
+        Assertions.assertEquals(a.position, ((Animal) map.objectAt(new Vector2d(2, 0))).position);
+
+        Animal a2 = new Animal(map,new Vector2d(3,5));
+        Assertions.assertEquals(a2.position, ((Animal) map.objectAt(new Vector2d(3, 5))).position);
+
+
+        for (int w=0; w<=10; w++)
+            for (int h = 0; h <= 5; h++) {
+                if (!(h == 0 && w == 2) && !(h == 5 && w == 3)) {
+                    assertNull(map.objectAt(new Vector2d(w, h)));
+                    Assertions.assertFalse(map.isOccupied(new Vector2d(w, h)));
+                    Assertions.assertTrue(map.canMoveTo(new Vector2d(w, h)));
+                }
+            }
+        IWorldMap map2 = new RectangularMap(4,5);
+        Animal a3 = new Animal(map2,new Vector2d(1,2));
+        Animal a4 = new Animal(map2,new Vector2d(1,2));
+        map2.place(a3);
+        Assertions.assertEquals(map2.objectAt(new Vector2d(1,2)),a3);
+        a3.move(MoveDirection.FORWARD);
+        map2.place(a4);
+        Assertions.assertEquals(map2.objectAt(new Vector2d(1,2)),a4);
+        a4.move(MoveDirection.FORWARD);
+        Assertions.assertEquals(map2.objectAt(new Vector2d(1,2)),a4);
+        a3.move(MoveDirection.FORWARD);
+        a3.move(MoveDirection.FORWARD);
+        a3.move(MoveDirection.FORWARD);
+        Assertions.assertEquals(map2.objectAt(new Vector2d(1,5)),a3);
+        a4.move(MoveDirection.FORWARD);
+        a4.move(MoveDirection.FORWARD);
+        a4.move(MoveDirection.FORWARD);
+        Assertions.assertEquals(map2.objectAt(new Vector2d(1,4)),a4);
     }
-
-    @Test
-    public void testAnimalMovement(){
-        Animal a = new Animal();
-
-        assertEquals("Północ, (2,2)",a.toString());
-
-        OptionsParser o = new OptionsParser();
-        MoveDirection[] moves = o.parse(new String[]{"f","b","b","b","b","b","l"});
-        for (MoveDirection move : moves) a.move(move);
-        assertEquals("Zachód, (2,0)",a.toString());
-
-        MoveDirection[] moves2 = o.parse(new String[]{"right","right","f","f","f","f","f","f"});
-        for (MoveDirection move : moves2) a.move(move);
-        assertEquals("Wschód, (4,0)", a.toString());
-
-        MoveDirection[] moves3 = o.parse(new String[]{"b","b","r","f","f","l","l","b","f","f","r","r"});
-        for (MoveDirection move : moves3) a.move(move);
-        assertEquals("Południe, (2,2)", a.toString());
-    }
-
 
 }
