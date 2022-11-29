@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 public class SimulationEngine implements IEngine {
     private final MoveDirection[] moves;
-    private final IWorldMap map;
     private Vector2d[] vectors;
+    private IWorldMap map;
     private ArrayList<Animal> animals = new ArrayList<>();
-
     public SimulationEngine(MoveDirection[] moves_, IWorldMap map_, Vector2d[] vectors_) {
         moves = moves_;
         map = map_;
@@ -18,7 +17,6 @@ public class SimulationEngine implements IEngine {
         }
     }
     public void run(){
-        //List<Animals> = map.getAnimals();
         int i = 0;
         for (MoveDirection move : moves){
             Animal a = (Animal) map.objectAt(vectors[i]);
@@ -29,7 +27,6 @@ public class SimulationEngine implements IEngine {
             if(i==vectors.length){
                 i = 0;
             }
-
         }
 }
 }

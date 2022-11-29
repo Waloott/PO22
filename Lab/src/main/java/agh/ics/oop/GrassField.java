@@ -1,69 +1,70 @@
 package agh.ics.oop;
 import java.lang.Math;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 
-public class GrassField extends AbstractWorldMap
-{
-    private int fieldsAmount;
-    private Vector2d upperBound;
-    private Vector2d lowerBound;
-    private ArrayList<Grass> grasses;
-    private void setBounds(Vector2d position){
-        this.upperBound = upperBound.upperRight(position);
-        this.lowerBound = lowerBound.lowerLeft(position);
-    }
-    public GrassField(int number){
+public class GrassField extends AbstractWorldMap implements IPositionChangeObserver  {
+   public Map<Vector2d, Grass> grasses;
+    public GrassField(int number) {
 
-        grasses = new ArrayList<>();
-        fieldsAmount = number;
-        this.width = (int) Math.sqrt(number*10);
-        this.height = (int) Math.sqrt(number*10);
-        this.upperBound = new Vector2d(0,0);
-        this.lowerBound = new Vector2d(width,height);
+        grasses = new HashMap<>();
+        this.width = (int) Math.sqrt(number * 10);
+        this.height = (int) Math.sqrt(number * 10);
+        //this.upperBound = new Vector2d(0,0);
+        //this.lowerBound = new Vector2d(width,height);
         int x;
         int y;
-        for (int i=0;i<number;i++) {
+        for (int i = 0; i < number; i++) {
             x = (int) Math.floor(Math.random() * (width + 1));
             y = (int) Math.floor(Math.random() * (width + 1));
             while (objectAt(new Vector2d(x, y)) != null) {
-                 x = (int) Math.floor(Math.random() * (width + 1));
-                 y = (int) Math.floor(Math.random() * (width + 1));
+                x = (int) Math.floor(Math.random() * (width + 1));
+                y = (int) Math.floor(Math.random() * (width + 1));
             }
-            Grass grass = new Grass(new Vector2d(x,y));
-            grasses.add(grass);
-            setBounds(grass.getPosition());
+            System.out.println(new Vector2d(x,y));
+            Grass grass = new Grass(new Vector2d(x, y));
+            grasses.put(grass.getPosition(), grass);
         }
     }
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        if(!(objectAt(position) instanceof Animal)){
-            setBounds(position);
-        }
-        return !(objectAt(position) instanceof Animal);
+        return !(objectAt(position) instanceof Animal); //unikac instanceof
     }
 
     @Override
     public boolean place(Animal animal) {
         super.place(animal);
-        if(super.place(animal)){
-            setBounds(animal.getPosition());
-        }
         return super.place(animal);
     }
+
     @Override
     public Object objectAt(Vector2d position) {
         Object returned_object = super.objectAt(position);
-        if(returned_object!=null){return returned_object;}
-        for (Grass grass : grasses) {
-            if (grass.getPosition().equals(position)) {
-                returned_object = grass;
-            }
-            }
-        return returned_object;
+        if (returned_object != null) {
+            return returned_object;
+        }
+            return grasses.get(position);
     }
-    public Vector2d[] getBounds() {
-        return new Vector2d[] {lowerBound,upperBound};
-    }
+
+        public Vector2d[] getBounds () {
+            Vector2d upperBound = new Vector2d(-999999,-999999);
+            Vector2d lowerBound = new Vector2d(999999,999999);
+            for (Vector2d position : animals.keySet()) {
+                lowerBound = lowerBound.lowerLeft(position);
+                upperBound = upperBound.upperRight(position);
+            }
+            for (Vector2d position : grasses.keySet()) {
+                lowerBound = lowerBound.lowerLeft(position);
+                upperBound = upperBound.upperRight(position);
+            }
+            return new Vector2d[]{lowerBound, upperBound};
+        }
 }
+
+
+
+            //keySet entrySet values
