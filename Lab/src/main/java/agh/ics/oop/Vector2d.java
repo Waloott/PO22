@@ -12,21 +12,15 @@ public class Vector2d {
     }
 
     public String toString() {
-        return "(" + Integer.toString(this.x) + "," + Integer.toString(this.y) + ")";
+        return "(" + (this.x) + "," + (this.y) + ")";
     }
 
     boolean precedes(Vector2d other) {
-        if (this.x <= other.x && this.y <= other.y) {
-            return true;
-        }
-        return false;
+        return this.x <= other.x && this.y <= other.y;
     }
 
     boolean follows(Vector2d other) {
-        if (this.x >= other.x && this.y >= other.y) {
-            return true;
-        }
-        return false;
+        return this.x >= other.x && this.y >= other.y;
     }
 
     Vector2d add(Vector2d other) {
