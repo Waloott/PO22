@@ -1,4 +1,6 @@
 package agh.ics.oop;
+import agh.ics.oop.gui.App;
+import javafx.application.Application;
 
 public class World {
     public static void run(MoveDirection[] directions) {
@@ -13,6 +15,7 @@ public class World {
             System.out.println(message);
         }
     }
+
     public static MoveDirection[] toEnum(String[] directions) {
         MoveDirection[] directionsEnum = new MoveDirection[directions.length];
         for (int i = 0; i < directions.length; i++) {
@@ -26,31 +29,27 @@ public class World {
         }
         return directionsEnum;
     }
-    public static void main(String[] arg) {
 
-       /* String[] args = new String[]{"f","b","r","l","f","f","r","r","f","f","f","f","f","f","f","f"};
-        MoveDirection[] directions = new OptionsParser().parse(args);
-        RectangularMap map = new RectangularMap(10, 5);
-        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
-        IEngine engine = new SimulationEngine(directions, map, positions);
-        System.out.println(map);
-        engine.run();
-        System.out.println(map);*/
+    public static void main(String[] args) {
 
-        IWorldMap map = new RectangularMap(5,5);
-        Animal a = new Animal(map, new Vector2d(2,2));
-        map.place(a);
-        System.out.println(map);
-        a.move(MoveDirection.LEFT);
-        System.out.println(map);
-        a.move(MoveDirection.FORWARD);
-        System.out.println(map);
-        System.out.println(map.objectAt(new Vector2d(2,2)));
+        Application.launch(App.class, args);
+
+        try {
+            String[] args2 = new String[]{"b", "d", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"};
+            MoveDirection[] directions = new OptionsParser().parse(args2);
+            RectangularMap map = new RectangularMap(2, 2);
+            Animal a = new Animal(map, new Vector2d(2, 3));
+            map.place(a);
+            System.out.println(map);
+            Application.launch(App.class, args);
+        }
+        catch(IllegalArgumentException ex){
+            System.out.println(ex.toString());
+        }
 
     }
+
 }
-
-
 
 
 

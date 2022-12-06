@@ -15,12 +15,7 @@ public class Animal {
     }
     public Animal(IWorldMap map, Vector2d initialPosition){
         this.map= map;
-        if(this.map instanceof GrassField){
-            addObserver((GrassField)this.map);
-        }
-        if(this.map instanceof RectangularMap){
-            addObserver((RectangularMap)this.map);
-        }
+        addObserver(map);
         position = initialPosition;
         direction = MapDirection.NORTH;
     }
@@ -50,13 +45,13 @@ public class Animal {
             this.position = newPosition;
         }
     }
-    void addObserver(IPositionChangeObserver observer){
+    public void addObserver(IPositionChangeObserver observer){
         observers.add(observer);
     }
-    void removeObserver(IPositionChangeObserver observer){
+    public void removeObserver(IPositionChangeObserver observer){
         observers.remove(observer);
     }
-    void positionChanged(Vector2d oldPosition, Vector2d newPosition){
+    private void positionChanged(Vector2d oldPosition, Vector2d newPosition){
         for (IPositionChangeObserver observer :observers){
             observer.positionChanged(oldPosition,newPosition);
         }

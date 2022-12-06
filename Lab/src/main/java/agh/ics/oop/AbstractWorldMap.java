@@ -18,7 +18,8 @@ public abstract class AbstractWorldMap implements IWorldMap{
             this.animals.put(animal.getPosition(),animal);
             return true;
         }
-        return false;
+        else{
+        throw new IllegalArgumentException("Cant place animal on "+animal.getPosition());}
     }
     public String toString() {
         return new MapVisualizer(this).draw(getBounds()[0], getBounds()[1]);

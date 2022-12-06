@@ -12,7 +12,7 @@ public class OptionsParser {
                 case "backward","b" ->  MoveDirection.BACKWARD;
                 case "left","l" -> MoveDirection.LEFT;
                 case "right","r" -> MoveDirection.RIGHT;
-                default -> MoveDirection.UNKNOWN;
+                default -> throw new IllegalArgumentException(directions[i] +" is not legal move specification");
             };
             if(direction != MoveDirection.UNKNOWN){
             newDirections = Arrays.copyOf(newDirections,newDirections.length+1);

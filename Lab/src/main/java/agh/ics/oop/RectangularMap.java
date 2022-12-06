@@ -1,5 +1,5 @@
 package agh.ics.oop;
-public class RectangularMap extends AbstractWorldMap implements IPositionChangeObserver  {
+public class RectangularMap extends AbstractWorldMap {
     public int width;
     public int height;
 
