@@ -13,7 +13,6 @@ public class World {
             System.out.println(message);
         }
     }
-
     public static MoveDirection[] toEnum(String[] directions) {
         MoveDirection[] directionsEnum = new MoveDirection[directions.length];
         for (int i = 0; i < directions.length; i++) {
@@ -27,17 +26,27 @@ public class World {
         }
         return directionsEnum;
     }
+    public static void main(String[] arg) {
 
-    public static void main(String[] args) {
-        String[] args2 = new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"};
-        MoveDirection[] directions = new OptionsParser().parse(args2);
-        IWorldMap map = new GrassField(10);
+       /* String[] args = new String[]{"f","b","r","l","f","f","r","r","f","f","f","f","f","f","f","f"};
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        RectangularMap map = new RectangularMap(10, 5);
         Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
         IEngine engine = new SimulationEngine(directions, map, positions);
-        engine.run();
         System.out.println(map);
-        System.out.println(map.objectAt(new Vector2d(3,7)));
-        System.out.println(map.objectAt(new Vector2d(2,-1)));
+        engine.run();
+        System.out.println(map);*/
+
+        IWorldMap map = new RectangularMap(5,5);
+        Animal a = new Animal(map, new Vector2d(2,2));
+        map.place(a);
+        System.out.println(map);
+        a.move(MoveDirection.LEFT);
+        System.out.println(map);
+        a.move(MoveDirection.FORWARD);
+        System.out.println(map);
+        System.out.println(map.objectAt(new Vector2d(2,2)));
+
     }
 }
 

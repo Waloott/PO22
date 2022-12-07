@@ -1,10 +1,5 @@
 package agh.ics.oop;
-import javax.crypto.spec.ChaCha20ParameterSpec;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.NavigableMap;
-
-public class RectangularMap extends AbstractWorldMap {
+public class RectangularMap extends AbstractWorldMap implements IPositionChangeObserver  {
     public int width;
     public int height;
 
@@ -12,7 +7,6 @@ public class RectangularMap extends AbstractWorldMap {
         this.width = width;
         this.height = height;
     }
-
     /*
     @Override
     public ArrayList<Animal> getAnimals(){

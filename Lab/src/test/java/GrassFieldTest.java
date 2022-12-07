@@ -38,7 +38,6 @@ public class GrassFieldTest {
             for (int h = -10; h <= 10; h++) {
                 if (!(h == -1 && w == 2) && !(h == 7 && w == 3)) {
                     Assertions.assertFalse(map.objectAt(new Vector2d(w, h)) instanceof Animal);
-                    Assertions.assertFalse(map.objectAt(new Vector2d(w, h)) instanceof Animal);
                 }
             }
         }
