@@ -15,7 +15,6 @@ public class World {
             System.out.println(message);
         }
     }
-
     public static MoveDirection[] toEnum(String[] directions) {
         MoveDirection[] directionsEnum = new MoveDirection[directions.length];
         for (int i = 0; i < directions.length; i++) {
@@ -34,21 +33,7 @@ public class World {
 
         Application.launch(App.class, args);
 
-        try {
-            String[] args2 = new String[]{"b", "d", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"};
-            MoveDirection[] directions = new OptionsParser().parse(args2);
-            RectangularMap map = new RectangularMap(2, 2);
-            Animal a = new Animal(map, new Vector2d(2, 3));
-            map.place(a);
-            System.out.println(map);
-            Application.launch(App.class, args);
-        }
-        catch(IllegalArgumentException ex){
-            System.out.println(ex.toString());
-        }
-
     }
-
 }
 
 
