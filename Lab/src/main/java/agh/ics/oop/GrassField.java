@@ -1,20 +1,15 @@
 package agh.ics.oop;
 import java.lang.Math;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
-
-public class GrassField extends AbstractWorldMap implements IPositionChangeObserver  {
+public class GrassField extends AbstractWorldMap {
    public Map<Vector2d, Grass> grasses;
     public GrassField(int number) {
 
         grasses = new HashMap<>();
         this.width = (int) Math.sqrt(number * 10);
         this.height = (int) Math.sqrt(number * 10);
-        //this.upperBound = new Vector2d(0,0);
-        //this.lowerBound = new Vector2d(width,height);
         int x;
         int y;
         for (int i = 0; i < number; i++) {
@@ -32,12 +27,11 @@ public class GrassField extends AbstractWorldMap implements IPositionChangeObser
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        return !(objectAt(position) instanceof Animal); //unikac instanceof
+        return !(objectAt(position) instanceof Animal);
     }
 
     @Override
     public boolean place(Animal animal) {
-        super.place(animal);
         return super.place(animal);
     }
 
@@ -65,6 +59,3 @@ public class GrassField extends AbstractWorldMap implements IPositionChangeObser
         }
 }
 
-
-
-            //keySet entrySet values
