@@ -38,6 +38,7 @@ public interface IWorldMap extends IPositionChangeObserver{
     default boolean isOccupied(Vector2d position){
         return objectAt(position) !=null;
     }
+    public Vector2d[] getBounds ();
 
     /**
      * Return an object at a given position.

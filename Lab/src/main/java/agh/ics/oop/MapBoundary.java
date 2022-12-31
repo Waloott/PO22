@@ -3,6 +3,7 @@ import java.util.PriorityQueue;
 public class MapBoundary implements IPositionChangeObserver {
     PriorityQueue<Integer> xAxis = new PriorityQueue<>();
     PriorityQueue<Integer> yAxis = new PriorityQueue<>();
+
     @Override
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
         xAxis.add(newPosition.x);

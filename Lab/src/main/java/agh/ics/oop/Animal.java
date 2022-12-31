@@ -2,7 +2,7 @@ package agh.ics.oop;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal {
+public class Animal implements IMapElement {
     private Vector2d position;
     private List<IPositionChangeObserver> observers = new ArrayList<>();
     private MapDirection direction;
@@ -55,6 +55,11 @@ public class Animal {
         for (IPositionChangeObserver observer :observers){
             observer.positionChanged(oldPosition,newPosition);
         }
+    }
+
+    @Override
+    public String getImgSource() {
+        return ("Lab/src/main/resources/animal.png");
     }
 }
 
